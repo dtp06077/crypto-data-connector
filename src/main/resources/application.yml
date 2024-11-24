@@ -1,6 +1,6 @@
 spring:
   datasource:
-  url: ${SPRING_DATASOURCE_URL}
+  url: ${DATABASE_URL}
   username: huiseong
   password:
   driver-class-name: org.h2.Driver
