@@ -29,6 +29,7 @@ public class Ticker {
     private String tradeDate;
     private String tradeTime;
     private long tradeTimeStamp;
+    private String bufferTime;
 
     public Ticker(SaveTickerRequestDto requestDto) {
         this.openingPrice = requestDto.getOpeningPrice();

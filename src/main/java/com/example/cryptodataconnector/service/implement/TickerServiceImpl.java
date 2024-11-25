@@ -9,11 +9,9 @@ import com.example.cryptodataconnector.service.TickerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class TickerServiceImpl implements TickerService {
 
     private final TickerRepository tickerRepository;
@@ -22,7 +20,6 @@ public class TickerServiceImpl implements TickerService {
      * 현재가 저장
      */
     @Override
-    @Transactional
     public ResponseEntity<? super SaveTickerResponseDto> saveTicker(SaveTickerRequestDto requestDto) {
 
         try {
@@ -36,4 +33,5 @@ public class TickerServiceImpl implements TickerService {
 
         return SaveTickerResponseDto.success();
     }
+
 }

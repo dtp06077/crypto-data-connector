@@ -8,7 +8,7 @@ spring:
   jpa:
     hibernate:
       # 실행 시 기존 테이블 드랍 후 다시 생성
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
