@@ -1,6 +1,6 @@
 package com.example.cryptodataconnector.domain;
 
-import com.example.cryptodataconnector.dto.request.TickerRequestDto;
+import com.example.cryptodataconnector.dto.request.SaveTickerRequestDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -30,7 +30,7 @@ public class Ticker {
     private String tradeTime;
     private long tradeTimeStamp;
 
-    public Ticker(TickerRequestDto requestDto) {
+    public Ticker(SaveTickerRequestDto requestDto) {
         this.openingPrice = requestDto.getOpeningPrice();
         this.highPrice = requestDto.getHighPrice();
         this.lowPrice = requestDto.getLowPrice();

@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class TickerRequestDto {
+public class SaveTickerRequestDto {
 
     private double openingPrice;
     private double highPrice;
