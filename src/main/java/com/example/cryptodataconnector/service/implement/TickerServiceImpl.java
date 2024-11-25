@@ -1,5 +1,6 @@
 package com.example.cryptodataconnector.service.implement;
 
+import com.example.cryptodataconnector.domain.Ticker;
 import com.example.cryptodataconnector.dto.request.SaveTickerRequestDto;
 import com.example.cryptodataconnector.dto.response.ResponseDto;
 import com.example.cryptodataconnector.dto.response.SaveTickerResponseDto;
@@ -22,12 +23,14 @@ public class TickerServiceImpl implements TickerService {
      */
     @Override
     @Transactional
-    public ResponseEntity<? super SaveTickerResponseDto> saveTicker(SaveTickerRequestDto saveTickerRequestDto) {
+    public ResponseEntity<? super SaveTickerResponseDto> saveTicker(SaveTickerRequestDto requestDto) {
 
         try {
+            Ticker ticker = new Ticker(requestDto);
+            tickerRepository.save(ticker);
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return ResponseDto.databaseError();
         }
 
