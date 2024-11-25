@@ -21,8 +21,8 @@ public class Ticker {
     private double lowPrice;
     private double tradePrice;
     private double prevClosingPrice;
-    private double highest52WeekPrice;
-    private double lowest52WeekPrice;
+    private double highest_52_WeekPrice;
+    private double lowest_52_WeekPrice;
     private double tradeVolume;
     private double accTradeVolume;
     private double accTradePrice;
@@ -36,8 +36,8 @@ public class Ticker {
         this.lowPrice = requestDto.getLowPrice();
         this.tradePrice = requestDto.getTradePrice();
         this.prevClosingPrice = requestDto.getPrevClosingPrice();
-        this.highest52WeekPrice = requestDto.getHighest52WeekPrice();
-        this.lowest52WeekPrice = requestDto.getLowest52WeekPrice();
+        this.highest_52_WeekPrice = requestDto.getHighest_52_WeekPrice();
+        this.lowest_52_WeekPrice = requestDto.getLowest_52_WeekPrice();
         this.tradeVolume = requestDto.getTradeVolume();
         this.accTradeVolume = requestDto.getAccTradeVolume();
         this.accTradePrice = requestDto.getAccTradePrice();

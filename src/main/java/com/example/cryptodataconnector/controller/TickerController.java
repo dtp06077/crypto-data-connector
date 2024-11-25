@@ -21,6 +21,7 @@ public class TickerController {
     @PostMapping("")
     public ResponseEntity<? super SaveTickerResponseDto> saveTicker(
             @RequestBody @Valid SaveTickerRequestDto tickerRequestDto) {
+
         return tickerService.saveTicker(tickerRequestDto);
     }
 }
