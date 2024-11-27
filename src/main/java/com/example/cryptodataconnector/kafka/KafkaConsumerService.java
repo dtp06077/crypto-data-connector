@@ -47,8 +47,8 @@ public class KafkaConsumerService {
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> record : records) {
-                    System.out.printf("Consumed message: %s from topic %s%n", record.value(), record.topic());
-                    // TODO : json data DB 저장 로직
+//                    System.out.printf("Success from topic %s%n", record.topic());
+
                     SaveTickerRequestDto requestDto = jsonToRequestTransfer.transfer(record.value());
                     tickerService.saveTicker(requestDto);
                 }

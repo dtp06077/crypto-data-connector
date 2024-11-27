@@ -1,11 +1,14 @@
 package com.example.cryptodataconnector.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+//필요한 필드 외 무시
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SaveTickerRequestDto {
 
     @JsonProperty("opening_price")
