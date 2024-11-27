@@ -1,11 +1,15 @@
 package com.example.cryptodataconnector.kafka;
 
+import com.example.cryptodataconnector.dto.request.SaveTickerRequestDto;
+import com.example.cryptodataconnector.service.TickerService;
+import com.example.cryptodataconnector.transfer.JsonToRequestTransfer;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +21,10 @@ import java.util.Properties;
 public class KafkaConsumerService {
 
     private final KafkaConsumer<String, String> consumer;
+    @Autowired
+    private TickerService tickerService;
+    @Autowired
+    private JsonToRequestTransfer jsonToRequestTransfer;
 
     public KafkaConsumerService(@Value("${kafka.bootstrap-servers}") String bootstrapServers) {
         Properties props = new Properties();
@@ -29,7 +37,7 @@ public class KafkaConsumerService {
 
     @PostConstruct
     public void startConsuming() {
-        consumer.subscribe(Collections.singletonList("test"));
+        consumer.subscribe(Collections.singletonList("crypto_topic_dev"));
         // 스레드 분리
         new Thread(this::consumeMessages).start();
     }
@@ -40,7 +48,9 @@ public class KafkaConsumerService {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> record : records) {
                     System.out.printf("Consumed message: %s from topic %s%n", record.value(), record.topic());
-                    // TODO : 웹소켓 메시지 전송 로직
+                    // TODO : json data DB 저장 로직
+                    SaveTickerRequestDto requestDto = jsonToRequestTransfer.transfer(record.value());
+                    tickerService.saveTicker(requestDto);
                 }
             }
         } catch (Exception e) {
