@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
@@ -30,7 +31,7 @@ public class TickerRepository {
     @Scheduled(fixedRate = 60000)
     @Transactional
     public void buffer() {
-        String now = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         synchronized (tickerQueue) {
             while (!tickerQueue.isEmpty()) {
                 Ticker ticker = tickerQueue.poll();

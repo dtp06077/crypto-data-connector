@@ -21,3 +21,7 @@ logging:
 #서버 포트 설정
 server:
   port: 5000
+
+#카프카 브로커 주소
+kafka:
+  bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
