@@ -9,9 +9,14 @@ import com.example.cryptodataconnector.service.TickerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class TickerServiceImpl implements TickerService {
 
     private final TickerRepository tickerRepository;
@@ -20,10 +25,15 @@ public class TickerServiceImpl implements TickerService {
      * 현재가 저장
      */
     @Override
+    @Transactional
     public ResponseEntity<? super SaveTickerResponseDto> saveTicker(SaveTickerRequestDto requestDto) {
 
         try {
             Ticker ticker = new Ticker(requestDto);
+            //DB 저장 시간 설정
+            String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            ticker.setBufferTime(now);
+
             tickerRepository.save(ticker);
 
         } catch (Exception e) {
