@@ -49,4 +49,7 @@ public class SaveTickerRequestDto {
 
     @JsonProperty("trade_timestamp")
     private long tradeTimeStamp;
+
+    @JsonProperty("buffer_time")
+    private String bufferTime;
 }

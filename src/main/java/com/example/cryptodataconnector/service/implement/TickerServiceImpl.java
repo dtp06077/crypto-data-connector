@@ -11,9 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -30,9 +27,6 @@ public class TickerServiceImpl implements TickerService {
 
         try {
             Ticker ticker = new Ticker(requestDto);
-            //DB 저장 시간 설정
-            String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-            ticker.setBufferTime(now);
 
             tickerRepository.save(ticker);
 

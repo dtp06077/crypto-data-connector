@@ -45,5 +45,6 @@ public class Ticker {
         this.tradeDate = requestDto.getTradeDate();
         this.tradeTime = requestDto.getTradeTime();
         this.tradeTimeStamp = requestDto.getTradeTimeStamp();
+        this.bufferTime = requestDto.getBufferTime();
     }
 }
